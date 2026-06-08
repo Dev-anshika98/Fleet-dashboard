@@ -19,9 +19,10 @@ export function VehicleDetail({ vehicle, onBack }: VehicleDetailProps) {
     return tripDate.toDateString() === today.toDateString()
   })
 
-  const todayDistance = todayTrips.reduce((sum, t) => sum + t.distance_km, 0)
-  const todayIdleTime = todayTrips.reduce((sum, t) => sum + t.idle_time_min, 0)
-  const todayHalts = todayTrips.reduce((sum, t) => sum + t.halt_count, 0)
+  const summaryTrips = todayTrips.length > 0 ? todayTrips : trips
+  const todayDistance = summaryTrips.reduce((sum, t) => sum + t.distance_km, 0)
+  const todayIdleTime = summaryTrips.reduce((sum, t) => sum + t.idle_time_min, 0)
+  const todayHalts = summaryTrips.reduce((sum, t) => sum + t.halt_count, 0)
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
@@ -67,7 +68,7 @@ export function VehicleDetail({ vehicle, onBack }: VehicleDetailProps) {
 
       <div className="p-3 border-b border-[var(--color-border)] shrink-0">
         <h4 className="text-xs font-medium text-[var(--color-muted-foreground)] uppercase tracking-wide mb-2">
-          Today&apos;s Summary
+          {todayTrips.length > 0 ? "Today’s Summary" : "Summary"}
         </h4>
         <div className="grid grid-cols-2 gap-2">
           <div className="flex items-center gap-2 p-2 rounded-md bg-[var(--color-secondary)]">
@@ -80,7 +81,7 @@ export function VehicleDetail({ vehicle, onBack }: VehicleDetailProps) {
           <div className="flex items-center gap-2 p-2 rounded-md bg-[var(--color-secondary)]">
             <MapPin className="w-4 h-4 text-[var(--color-status-idle)]" />
             <div>
-              <div className="text-sm font-semibold">{todayTrips.length}</div>
+              <div className="text-sm font-semibold">{summaryTrips.length}</div>
               <div className="text-[10px] text-[var(--color-muted-foreground)]">Trips</div>
             </div>
           </div>
