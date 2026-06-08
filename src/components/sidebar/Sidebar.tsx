@@ -15,7 +15,7 @@ export function Sidebar({ vehicles, onVehicleSelect }: SidebarProps) {
   const selectedVehicle = vehicles.find((v) => v.id === selectedVehicleId) ?? null
 
   return (
-    <div className="h-full flex flex-col bg-white border-l border-[var(--color-border)]">
+    <div className="h-full flex flex-col bg-white border-l border-[var(--color-border)] overflow-hidden">
       {sidebarView === 'detail' && selectedVehicle ? (
         <VehicleDetail vehicle={selectedVehicle} onBack={clearSelection} />
       ) : (

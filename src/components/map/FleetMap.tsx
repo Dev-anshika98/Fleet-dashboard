@@ -39,7 +39,7 @@ export function FleetMap({ vehicles, flyToVehicle, onFlyComplete }: FleetMapProp
     <MapContainer
       center={[BANGALORE_CENTER.lat, BANGALORE_CENTER.lng]}
       zoom={DEFAULT_ZOOM}
-      className="h-full w-full rounded-lg"
+      className="h-full w-full rounded-none md:rounded-lg"
       zoomControl={true}
     >
       <TileLayer url={MAP_TILE_URL} attribution={MAP_ATTRIBUTION} />

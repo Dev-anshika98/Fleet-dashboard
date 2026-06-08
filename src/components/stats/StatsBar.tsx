@@ -8,7 +8,7 @@ interface StatsBarProps {
 }
 
 export function StatsBar({ vehicles, alerts }: StatsBarProps) {
-  const { setStatusFilter } = useDashboardStore()
+  const { setStatusFilter, setSidebarTab } = useDashboardStore()
   const activeCount = vehicles.filter((v) => v.status === 'active').length
   const idleCount = vehicles.filter((v) => v.status === 'idle').length
   const alertCount = alerts.filter((a) => !a.resolved).length
@@ -40,18 +40,18 @@ export function StatsBar({ vehicles, alerts }: StatsBarProps) {
       value: alertCount,
       icon: AlertTriangle,
       color: 'var(--color-destructive)',
-      onClick: () => {},
+      onClick: () => setSidebarTab('alerts'),
       pulse: alertCount > 0,
     },
   ]
 
   return (
-    <div className="flex items-center gap-3 p-3 overflow-x-auto shrink-0">
+    <div className="grid grid-cols-2 gap-2 p-2 md:flex md:items-center md:gap-3 md:p-3 md:overflow-x-auto shrink-0">
       {stats.map((stat) => (
         <button
           key={stat.label}
           onClick={stat.onClick}
-          className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-white border border-[var(--color-border)] hover:border-[var(--color-primary)]/50 transition-colors min-w-[130px]"
+          className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-white border border-[var(--color-border)] hover:border-[var(--color-primary)]/50 transition-colors md:min-w-[130px] md:gap-2.5 md:px-3"
         >
           <stat.icon
             className={`w-5 h-5 shrink-0 ${stat.pulse ? 'alert-pulse' : ''}`}

@@ -34,7 +34,7 @@ export function VehicleCard({ vehicle, onClick }: VehicleCardProps) {
         </span>
       </div>
 
-      <div className="flex items-center gap-4 mt-2 ml-4">
+      <div className="flex items-center gap-2 md:gap-4 mt-2 ml-4">
         <span className="flex items-center gap-1 text-xs text-[var(--color-muted-foreground)]">
           <Gauge className="w-3 h-3" />
           {formatSpeed(vehicle.last_speed)}

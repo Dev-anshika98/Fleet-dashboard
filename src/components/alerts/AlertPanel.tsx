@@ -52,7 +52,7 @@ export function AlertPanel() {
                         {timeAgo(alert.triggered_at)}
                       </span>
                     </div>
-                    <p className="text-xs text-[var(--color-foreground)] mt-1">{alert.message}</p>
+                    <p className="text-xs text-[var(--color-foreground)] mt-1 break-words">{alert.message}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <span className="text-[10px] text-[var(--color-muted-foreground)] capitalize">
                         {alert.type.replace('_', ' ')}

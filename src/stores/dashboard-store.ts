@@ -8,6 +8,7 @@ interface DashboardState {
   searchQuery: string
   sidebarView: 'list' | 'detail'
   sidebarTab: 'vehicles' | 'alerts'
+  isMobileSidebarOpen: boolean
 
   selectVehicle: (id: string | null) => void
   selectTrip: (id: string | null) => void
@@ -16,6 +17,8 @@ interface DashboardState {
   setSearchQuery: (query: string) => void
   setSidebarTab: (tab: 'vehicles' | 'alerts') => void
   clearSelection: () => void
+  toggleMobileSidebar: () => void
+  setMobileSidebarOpen: (open: boolean) => void
 }
 
 export const useDashboardStore = create<DashboardState>((set) => ({
@@ -25,11 +28,13 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   searchQuery: '',
   sidebarView: 'list',
   sidebarTab: 'vehicles',
+  isMobileSidebarOpen: false,
 
   selectVehicle: (id) => set({
     selectedVehicleId: id,
     sidebarView: id ? 'detail' : 'list',
     selectedTripId: null,
+    isMobileSidebarOpen: !!id,
   }),
 
   selectTrip: (id) => set({ selectedTripId: id }),
@@ -53,4 +58,7 @@ export const useDashboardStore = create<DashboardState>((set) => ({
     selectedTripId: null,
     sidebarView: 'list',
   }),
+
+  toggleMobileSidebar: () => set((state) => ({ isMobileSidebarOpen: !state.isMobileSidebarOpen })),
+  setMobileSidebarOpen: (open) => set({ isMobileSidebarOpen: open }),
 }))

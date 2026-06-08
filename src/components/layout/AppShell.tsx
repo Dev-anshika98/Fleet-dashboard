@@ -9,7 +9,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
-      <header className="h-14 border-b border-[var(--color-border)] bg-white flex items-center justify-between px-4 shrink-0">
+      <header className="h-14 border-b border-[var(--color-border)] bg-white flex items-center justify-between px-3 md:px-4 shrink-0">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-[var(--color-primary)] rounded-lg flex items-center justify-center">
             <Truck className="w-5 h-5 text-white" />
